@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
-# Create your views here.
+
+def custom_login(request):
+    if request.method == 'POST':
+        user = authenticate(
+            phone=request.POST.get("phone"),
+            password=request.POST.get("password")
+        )
+        if not user:
+            messages.info(request, "User not found")
+            return redirect("custom_login")
+        login(request, user)
+        return redirect("dashboard")
+    return render(request, 'login.html')
