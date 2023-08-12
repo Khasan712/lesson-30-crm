@@ -41,5 +41,6 @@ class Director(View):
                     return HttpResponseRedirect("?page=shops")
                 else:
                     print(form.errors)
+                    print("????")
         pass
 
