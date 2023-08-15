@@ -1,5 +1,6 @@
 from typing import Any
 from django import forms
+from apps.product.models import Product
 from apps.user.models import User
 
 
@@ -28,4 +29,9 @@ class AddShopForm(forms.ModelForm):
             password=password1
         )
         user.save()
-    
+
+
+class ProductAddForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ("title", 'description', 'category', 'measure')

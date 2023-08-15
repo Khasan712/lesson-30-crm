@@ -3,7 +3,6 @@ from django.contrib import auth
 
 
 class UserManager(BaseUserManager):
-    use_in_migrations = True
 
     def create_user(self, phone, role, password, first_name=None, last_name=None, **extra_fields):
         if not phone:
@@ -13,7 +12,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, phone, first_name, last_name, role, password=None, **extra_fields):
+    def create_superuser(self, phone, role, password, first_name=None, last_name=None,  **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
@@ -21,7 +20,7 @@ class UserManager(BaseUserManager):
             raise ValueError("Superuser must have is_staff=True.")
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("Superuser must have is_superuser=True.")
-        return self.create_user(phone, first_name, last_name, role, password, **extra_fields)
+        return self.create_user(phone, role, password, first_name, last_name, **extra_fields)
 
     def with_perm(
         self, perm, is_active=True, include_superusers=True, backend=None, obj=None
