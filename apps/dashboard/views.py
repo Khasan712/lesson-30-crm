@@ -34,13 +34,11 @@ class Director(View):
         method = request.POST.get("method")
         match method:
             case 'add-shop':
-                print("Kirdi")
                 form = AddShopForm(request.POST)
                 if form.is_valid():
                     form.save()
                     return HttpResponseRedirect("?page=shops")
                 else:
                     print(form.errors)
-                    print("????")
         pass
 
