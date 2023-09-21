@@ -13,5 +13,8 @@ def custom_login(request):
             messages.info(request, "User not found")
             return redirect("custom_login")
         login(request, user)
-        return redirect("dashboard")
+        if user.role == "director":
+            return redirect("dashboard")
+        elif user.role == 'shop':
+            return redirect("shop")
     return render(request, 'login.html')

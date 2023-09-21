@@ -3,7 +3,6 @@ from django.contrib import auth
 
 
 class UserManager(BaseUserManager):
-    use_in_migrations = True
 
     def create_user(self, phone, role, password, first_name=None, last_name=None, **extra_fields):
         if not phone:
@@ -13,7 +12,11 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+<<<<<<< HEAD
     def create_superuser(self, phone, role, password, first_name=None, last_name=None, **extra_fields):
+=======
+    def create_superuser(self, phone, role, password, first_name=None, last_name=None,  **extra_fields):
+>>>>>>> khasan
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
