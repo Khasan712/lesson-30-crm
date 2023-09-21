@@ -4,7 +4,8 @@ from .models import (
     Category,
     Client,
     Trade,
-    ShopProduct
+    ShopProduct,
+    ProductSellPrice
 )
 
 # Register your models here.
@@ -31,5 +32,9 @@ class ShopProductAdmin(admin.ModelAdmin):
 
 @admin.register(Trade)
 class TradeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'shop', 'product', 'client', 'sold_price', 'qty', 'created_at')
+    list_display = ('id', 'shop', 'product', 'sold_price', 'qty', 'created_at')
 
+
+@admin.register(ProductSellPrice)
+class ProductSellPriceAdmin(admin.ModelAdmin):
+    list_display = ("id", 'product', 'price')
